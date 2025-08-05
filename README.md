@@ -1,7 +1,7 @@
 # AlgorithmicBacktestingEngine
 
 > A modular C# backtesting engine for algorithmic trading strategies, with a focus on data efficiency, extensibility, and robust analysis.  
-> { ><>)))'> } — Alexei Faktorman
+> { ><>)))'> } — Yehoshama
 
 ---
 
