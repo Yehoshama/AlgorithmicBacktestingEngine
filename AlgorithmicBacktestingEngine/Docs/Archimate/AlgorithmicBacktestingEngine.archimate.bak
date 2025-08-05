@@ -74,7 +74,7 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
     <folder name="Data Manager" id="id-7ebe7297c6db48f49157e76c4e77aeb9">
       <element xsi:type="archimate:ArchimateDiagramModel" name="Data Manager Components" id="id-b0d31878da414bf683bb25aad063e2c8">
         <child xsi:type="archimate:DiagramObject" id="id-19e67326074942f1956386bf5f9fcced" archimateElement="id-38331f1d57a54398b7a327d4a87ec572">
-          <bounds x="192" y="60" width="120" height="55"/>
+          <bounds x="192" y="120" width="120" height="55"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-ac2c365d75a84644b4d9d190f5dc8da7" source="id-19e67326074942f1956386bf5f9fcced" target="id-b94933439c9641189248787d8cc415ee" archimateRelationship="id-41ccabbcc4dc41fe856bf166f6852c8c"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-f210e11f36e84f1a8ccef18f755fc9b7" source="id-19e67326074942f1956386bf5f9fcced" target="id-d046f2caf1e846979055cc6a8e8b50ba" archimateRelationship="id-053744d381d64514a91097110616b39a"/>
           <sourceConnection xsi:type="archimate:Connection" id="id-2a7f460ab5a44204aa96c9791b083941" source="id-19e67326074942f1956386bf5f9fcced" target="id-1491353d44c746afb74807cf1d3846d6" archimateRelationship="id-23e9c61d7ca8477e9547977b709c4da0"/>
@@ -83,22 +83,22 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
           <sourceConnection xsi:type="archimate:Connection" id="id-c3476139b92f482a9cd4908e6c2c3ab2" source="id-19e67326074942f1956386bf5f9fcced" target="id-4dc4bc47124a446c9ec2468a9752a93d" archimateRelationship="id-42f0635ae7344b46b05e9cc52d068ebf"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-b94933439c9641189248787d8cc415ee" targetConnections="id-ac2c365d75a84644b4d9d190f5dc8da7" archimateElement="id-17ac0108b61849c9a54c30c327d155b4">
-          <bounds x="396" y="24" width="120" height="55"/>
+          <bounds x="396" y="84" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-d046f2caf1e846979055cc6a8e8b50ba" targetConnections="id-f210e11f36e84f1a8ccef18f755fc9b7" archimateElement="id-5d36ed004abd4a9892818c09f281bc55">
-          <bounds x="396" y="96" width="120" height="55"/>
+          <bounds x="396" y="156" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-288e5819c8af4decb25fa4f0fec347cc" targetConnections="id-22b36ab5f4b94899ada6f92692a7a80b" archimateElement="id-4c84e19735e44d98986cfc34c518a9f6">
-          <bounds x="24" y="24" width="120" height="55"/>
+          <bounds x="24" y="84" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-1491353d44c746afb74807cf1d3846d6" targetConnections="id-2a7f460ab5a44204aa96c9791b083941" archimateElement="id-48ac4101720648ef9ee1bcfa7a450ce0">
-          <bounds x="24" y="96" width="120" height="55"/>
+          <bounds x="24" y="156" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-4dc4bc47124a446c9ec2468a9752a93d" targetConnections="id-c3476139b92f482a9cd4908e6c2c3ab2" archimateElement="id-131391a259bd44fb832782317d97efd5">
-          <bounds x="108" y="168" width="120" height="55"/>
+          <bounds x="108" y="228" width="120" height="55"/>
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-2246f3af4f714885b128a394c71dcd87" targetConnections="id-c3eff5bfb27849ca895a04f62f4938b6" archimateElement="id-00aa492bd6a846318c996edae2a4b4c0">
-          <bounds x="264" y="168" width="120" height="55"/>
+          <bounds x="264" y="228" width="120" height="55"/>
         </child>
       </element>
     </folder>
