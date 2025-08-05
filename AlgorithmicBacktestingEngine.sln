@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmicBacktestingEngine", "AlgorithmicBacktestingEngine\AlgorithmicBacktestingEngine.csproj", "{1DCC33D4-5223-4E07-BACA-9B8554D225D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC619E88-A13E-4B30-83FB-E805318B35CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C0AEAF09-2789-469E-A99A-990CBFB60A27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archimate", "Archimate", "{4BBEA92A-3B3A-4441-B00D-8611455AE06F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagrams", "Diagrams", "{791B3317-F9EE-40B3-A613-9C5D96161857}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{83CD3064-8F59-49D5-861B-90CE430F9C3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DCC33D4-5223-4E07-BACA-9B8554D225D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCC33D4-5223-4E07-BACA-9B8554D225D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCC33D4-5223-4E07-BACA-9B8554D225D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCC33D4-5223-4E07-BACA-9B8554D225D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1DCC33D4-5223-4E07-BACA-9B8554D225D2} = {BC619E88-A13E-4B30-83FB-E805318B35CF}
+		{4BBEA92A-3B3A-4441-B00D-8611455AE06F} = {C0AEAF09-2789-469E-A99A-990CBFB60A27}
+		{791B3317-F9EE-40B3-A613-9C5D96161857} = {C0AEAF09-2789-469E-A99A-990CBFB60A27}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65545863-F40A-4C7C-93AC-81830211DF1F}
+	EndGlobalSection
+EndGlobal
