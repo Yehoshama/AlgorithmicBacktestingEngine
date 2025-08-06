@@ -101,13 +101,26 @@ namespace AlgorithmicBacktestingEngine.Objects
             using(var reader =  new BinaryReader(buffer))
             {
                 var metadata = ReadMetadata(reader.ReadBytes(MetadataSerialisationLength));
-                for(int i) // todo Continue here
+                var minPriceChange = metadata.MinimumPriceChange;
+                Tick prev = metadata.FirstTick;
+                List<Tick> ticks = new List<Tick>() { prev };
+                for (int i = 0; i < metadata.TicksCount; i++)
+                {
+                    var data = reader.ReadBytes(Tick.SerialisationLength);
+                    var tickDiff = TickDiff.FromBytes(data);
+                    var tick = GetTick(prev, tickDiff, minPriceChange);
+                    ticks.Add(tick);
+                    prev = tick;
+                }
+
+                TicksSequence ticksSequence = new TicksSequence(ticks, minPriceChange);
+                return ticksSequence;
             }
         }
-        private Tick GetTick(Tick prev, TickDiff diff)
+        private static Tick GetTick(Tick prev, TickDiff diff, decimal minPriceChange)
         {
             DateTime time = prev.Time + new TimeSpan(diff.TimeDifferenceTicks);
-            decimal price = prev.Price + diff.PriceDifference * MinPriceChange;
+            decimal price = prev.Price + diff.PriceDifference * minPriceChange;
             decimal volume = diff.CurrentVolume;
 
             return new Tick(time, price, volume);

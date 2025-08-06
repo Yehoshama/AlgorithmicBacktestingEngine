@@ -1,7 +1,8 @@
 ﻿# Tasks
 ---
 ## Must Have Features
-- [ ] custom financial data serialization for space efficiency - in progress
+- [ ] custom financial data serialization for space efficiency
+- [ ] create unit tests
 - [ ] order management
 - [ ] modular strategies based on a common interface
 - [ ] Reporting
@@ -9,10 +10,15 @@
 - [ ] The ability to convert lower-frequency data to higher-frequency data
 - [ ] loading with date range filters
 - [ ] back testing engine
+- [ ] error handeling, try/catch, etc...
 
-## tasks V0.0.1
-- [ ] make tick serialisation
-- [ ] make candles serialisation
+## tasks
+### V0.0.0 - current
+- [x] make tick serialisation - 0.0.0.4
+- [ ] make candles serialisation - in progress
+- [ ] test data serialisation with unit tests
+### V0.0.1
+- [ ] 
 
 ## Future Improvements and Ideas
 - [ ] Change the serialization proccess to use IEnumerable<> instead of List<>
