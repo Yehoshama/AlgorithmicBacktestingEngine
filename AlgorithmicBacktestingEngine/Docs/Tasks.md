@@ -13,12 +13,12 @@
 - [ ] error handeling, try/catch, etc...
 
 ## Versions and progress
-### V0.0.0 - current
+### V0.0.0
 - [x] make tick serialisation - 0.0.0.4
 - [x] make candles serialisation - 0.0.0.5
 - [x] add xml documentation to Tick and Candle and asociated types - 0.0.1
 
-### V0.0.1
+### V0.0.1 - current
 - [ ] test data serialisation with unit tests - in progress
 
 ## Todo's
