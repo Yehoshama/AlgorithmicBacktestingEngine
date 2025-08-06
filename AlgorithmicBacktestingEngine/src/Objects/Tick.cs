@@ -64,9 +64,9 @@ namespace AlgorithmicBacktestingEngine.Objects
     {
         public IReadOnlyList<Tick> Ticks { get; } = ticks.OrderBy(x => x.Time).ToList();
         public decimal MinPriceChange { get; } = minimumPriceDiff;
-        public int Count => Ticks.Count();
-        public DateTime Beginning => Ticks.Min(x => x.Time);
-        public DateTime Ending => Ticks.Max(x => x.Time);
+        public int Count => Ticks.Count;
+        public DateTime Beginning => Ticks[0].Time;
+        public DateTime Ending => Ticks.Last().Time;
         public TimeSpan TimeSpan => Ending - Beginning;
         public Tick First => Ticks[0];
         public const int MetadataSerialisationLength = Tick.SerialisationLength + 8 + 16 + 4; 
@@ -106,7 +106,7 @@ namespace AlgorithmicBacktestingEngine.Objects
                 List<Tick> ticks = new List<Tick>() { prev };
                 for (int i = 0; i < metadata.TicksCount; i++)
                 {
-                    var data = reader.ReadBytes(Tick.SerialisationLength);
+                    var data = reader.ReadBytes(TickDiff.SerializationLength);
                     var tickDiff = TickDiff.FromBytes(data);
                     var tick = GetTick(prev, tickDiff, minPriceChange);
                     ticks.Add(tick);
@@ -173,6 +173,7 @@ namespace AlgorithmicBacktestingEngine.Objects
         decimal CurrentVolume
         )
     {
+        internal const int SerializationLength = 8 + 2 + 16;
         internal byte[] GetBytes()
         {
             using (var buffer = new MemoryStream())
