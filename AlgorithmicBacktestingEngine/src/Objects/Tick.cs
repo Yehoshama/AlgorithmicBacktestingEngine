@@ -70,7 +70,10 @@ namespace AlgorithmicBacktestingEngine.Objects
         public TimeSpan TimeSpan => Ending - Beginning;
         public Tick First => Ticks[0];
         public const int MetadataSerialisationLength = Tick.SerialisationLength + 8 + 16 + 4; 
-
+        /// <summary>
+        /// serialises the TickSequence
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBytes()
         {
             var prev = Ticks.First();
@@ -95,6 +98,11 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return buffer.ToArray();
             }
         }
+        /// <summary>
+        /// Deserialises the TickSequence
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static TicksSequence FromBytes(byte[] bytes)
         {
             using(var buffer = new MemoryStream(bytes))
@@ -117,6 +125,13 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return ticksSequence;
             }
         }
+        /// <summary>
+        /// calculates the Tick from TickDiff and previous Tick
+        /// </summary>
+        /// <param name="prev">previous Tick</param>
+        /// <param name="diff">TickDiff</param>
+        /// <param name="minPriceChange">the minimum alowed price difference value</param>
+        /// <returns></returns>
         private static Tick GetTick(Tick prev, TickDiff diff, decimal minPriceChange)
         {
             DateTime time = prev.Time + new TimeSpan(diff.TimeDifferenceTicks);
@@ -125,6 +140,12 @@ namespace AlgorithmicBacktestingEngine.Objects
 
             return new Tick(time, price, volume);
         }
+        /// <summary>
+        /// calculates the TickDiff from two Ticks
+        /// </summary>
+        /// <param name="prev">previous Tick</param>
+        /// <param name="Current">current Tick</param>
+        /// <returns></returns>
         private TickDiff TickDifference(Tick prev, Tick Current)
         {
             var timeDiff = (Current.Time - prev.Time).Ticks;
@@ -133,6 +154,11 @@ namespace AlgorithmicBacktestingEngine.Objects
 
             return new TickDiff(timeDiff, diff, currentVolume);
         }
+        /// <summary>
+        /// deserialises the TickSequence metadata
+        /// </summary>
+        /// <param name="bytes">metadata byte array</param>
+        /// <returns></returns>
         internal static (Tick FirstTick, DateTime LastTime, decimal MinimumPriceChange, int TicksCount) ReadMetadata(byte[] bytes)
         {
             using (var buffer = new MemoryStream(bytes))
@@ -146,7 +172,10 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return (first, ending, minPriceChange, count);
             }
         }
-
+        /// <summary>
+        /// serialises TickSequence metadata
+        /// </summary>
+        /// <returns></returns>
         internal byte[] WriteMetadata()
         {
             using (var buffer = new MemoryStream())
@@ -164,7 +193,7 @@ namespace AlgorithmicBacktestingEngine.Objects
     /// <summary>
     /// represents the difference between two Ticks
     /// </summary>
-    /// <param name="TimeDifferenceTicks">the time difference in microseconds</param>
+    /// <param name="TimeDifferenceTicks">the time difference in ticks</param>
     /// <param name="PriceDifference">price difference as amount of "minimum alowed change" units</param>
     /// <param name="CurrentVolume">the exact volume of the latest tick</param>
     internal record TickDiff(
@@ -174,6 +203,10 @@ namespace AlgorithmicBacktestingEngine.Objects
         )
     {
         internal const int SerializationLength = 8 + 2 + 16;
+        /// <summary>
+        /// serialises the TickDiff
+        /// </summary>
+        /// <returns></returns>
         internal byte[] GetBytes()
         {
             using (var buffer = new MemoryStream())
@@ -186,7 +219,11 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return buffer.ToArray();
             }
         }
-
+        /// <summary>
+        /// deserialises the TickDiff
+        /// </summary>
+        /// <param name="bytes">TickDiff byte array</param>
+        /// <returns></returns>
         internal static TickDiff FromBytes(byte[] bytes)
         {
             using(var buffer = new MemoryStream(bytes))

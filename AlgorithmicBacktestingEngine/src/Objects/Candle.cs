@@ -25,6 +25,10 @@ namespace AlgorithmicBacktestingEngine.Objects
         )
     {
         public const int SerialisationLength = 8 + 16 * 5;
+        /// <summary>
+        /// Serialises the Candle
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBytes()
         {
             using (var buffer = new MemoryStream())
@@ -40,7 +44,11 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return buffer.ToArray();
             }
         }
-
+        /// <summary>
+        /// deserialises The Candle
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static Candle FromBytes(byte[] bytes)
         {
             //todo check for errors
@@ -58,7 +66,15 @@ namespace AlgorithmicBacktestingEngine.Objects
             }
         }
     }
-
+    /// <summary>
+    /// represents the difference between two Candles
+    /// </summary>
+    /// <param name="TimeDifferenceTicks">the time difference in ticks</param>
+    /// <param name="OpenDifference">open difference as amount of "minimum alowed change" units</param>
+    /// <param name="CloseDifference">close difference as amount of "minimum alowed change" units</param>
+    /// <param name="HighDifference">high difference as amount of "minimum alowed change" units</param>
+    /// <param name="LowDifference">low difference as amount of "minimum alowed change" units</param>
+    /// <param name="VolumeCurrent">the exact volume of the latest Candle</param>
     internal record CandleDiff(
         long TimeDifferenceTicks,
         short OpenDifference,
@@ -69,6 +85,10 @@ namespace AlgorithmicBacktestingEngine.Objects
         )
     {
         internal const int SerializationLength = 8 + 2 * 4 + 16;
+        /// <summary>
+        /// serialises the CandleDiff
+        /// </summary>
+        /// <returns></returns>
         internal byte[] GetBytes()
         {
             using (var buffer = new MemoryStream())
@@ -84,7 +104,11 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return buffer.ToArray();
             }
         }
-
+        /// <summary>
+        /// deserialises the CandleDiff
+        /// </summary>
+        /// <param name="bytes">CandleDiff byte array</param>
+        /// <returns></returns>
         internal static CandleDiff FromBytes(byte[] bytes)
         {
             using (var buffer = new MemoryStream(bytes))
@@ -101,7 +125,11 @@ namespace AlgorithmicBacktestingEngine.Objects
             }
         }
     }
-
+    /// <summary>
+    /// Represents a collection of candles with metadata
+    /// </summary>
+    /// <param name="candles">the Candle collection</param>
+    /// <param name="minimumPriceDiff">minimum alowed price change</param>
     public class CandleSequence(IEnumerable<Candle> candles, decimal minimumPriceDiff)
     {
         public IReadOnlyList<Candle> candles { get; } = candles.OrderBy(x => x.StartTime).ToList();
@@ -113,7 +141,10 @@ namespace AlgorithmicBacktestingEngine.Objects
         public TimeSpan Interval => candles[1].StartTime - First.StartTime;
         public Candle First => candles[0];
         public const int MetadataSerialisationLength = Candle.SerialisationLength + 8 + 16 + 8 + 4;
-
+        /// <summary>
+        /// serialises the CandleSequence
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBytes()
         {
             var prev = candles.First();
@@ -138,6 +169,11 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return buffer.ToArray();
             }
         }
+        /// <summary>
+        /// deserialises the CandleSequence
+        /// </summary>
+        /// <param name="bytes">CandleSequence byte array</param>
+        /// <returns></returns>
         public static CandleSequence FromBytes(byte[] bytes)
         {
             using (var buffer = new MemoryStream(bytes))
@@ -160,6 +196,13 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return candleSequence;
             }
         }
+        /// <summary>
+        /// calculates a candle from Candle and CandleDiff
+        /// </summary>
+        /// <param name="prev">previous Candle</param>
+        /// <param name="diff">current CandleDiff</param>
+        /// <param name="minPriceChange">minimum alowed price change</param>
+        /// <returns></returns>
         private static Candle GetCandle(Candle prev, CandleDiff diff, decimal minPriceChange)
         {
             DateTime time = prev.StartTime + new TimeSpan(diff.TimeDifferenceTicks);//todo change to use interval for more efficient memory management - e48dbae6-8621-415c-9d98-c0fc5ee4c700
@@ -171,6 +214,12 @@ namespace AlgorithmicBacktestingEngine.Objects
 
             return new Candle(time, open, close, high, low, volume);
         }
+        /// <summary>
+        /// calculates CandleDiff from two Candles
+        /// </summary>
+        /// <param name="prev">previous Candle</param>
+        /// <param name="Current">current Candle</param>
+        /// <returns></returns>
         private CandleDiff CandleDifference(Candle prev, Candle Current)
         {
             var timeDiff = (Current.StartTime - prev.StartTime).Ticks;
@@ -182,6 +231,11 @@ namespace AlgorithmicBacktestingEngine.Objects
 
             return new CandleDiff(timeDiff, openDiff, closeDiff, highDiff, lowDiff, currentVolume);
         }
+        /// <summary>
+        /// deserialises CandleSequence metadata from bytes
+        /// </summary>
+        /// <param name="bytes">metadata byte array</param>
+        /// <returns></returns>
         internal static (Candle FirstCandle, DateTime LastTime, decimal MinimumPriceChange, TimeSpan Interval, int TicksCount) ReadMetadata(byte[] bytes)
         {
             using (var buffer = new MemoryStream(bytes))
@@ -196,7 +250,10 @@ namespace AlgorithmicBacktestingEngine.Objects
                 return (first, ending, minPriceChange, interval, count);
             }
         }
-
+        /// <summary>
+        /// serialises CandleSequence metadata
+        /// </summary>
+        /// <returns></returns>
         internal byte[] WriteMetadata()
         {
             using (var buffer = new MemoryStream())
