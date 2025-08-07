@@ -9,6 +9,7 @@ namespace AlgorithmicBacktestingEngine.src.BacktestingEngine
 {
     public static class DataManager
     {
+        /*
         public static List<Candle> ToCandles(ReadOnlySpan<byte> bytes)
         {
 
@@ -37,5 +38,6 @@ namespace AlgorithmicBacktestingEngine.src.BacktestingEngine
         {
 
         }
+        */
     }
 }
