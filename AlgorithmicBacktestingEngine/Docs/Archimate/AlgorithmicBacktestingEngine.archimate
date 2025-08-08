@@ -41,6 +41,16 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
     <folder name="Strategies" id="id-96fece31c4ff45dc9814a47040506705">
       <folder name="IStrategy" id="id-9033fa631c6c4ac8b9ec4391c75a783b">
         <element xsi:type="archimate:ApplicationInterface" name="IStrategy" id="id-e540529cbfb84db5996a5d77d55a44bd"/>
+        <element xsi:type="archimate:ApplicationFunction" name="CloseOrder" id="id-c03c0fc3a7534520bf614e967937d02f"/>
+        <element xsi:type="archimate:ApplicationFunction" name="GetOrders" id="id-50d5ff634be142ad8fb6b65607470cfd"/>
+        <element xsi:type="archimate:ApplicationEvent" name="OnDeInit" id="id-ab8f153fec71479c8c1e3691f945cf64"/>
+        <element xsi:type="archimate:ApplicationEvent" name="OnInit" id="id-cb99f361f5d44631b410fd16af508000"/>
+        <element xsi:type="archimate:ApplicationEvent" name="OnNewCandle" id="id-4eb9985c71604ba88661afd8e3164979"/>
+        <element xsi:type="archimate:ApplicationEvent" name="OnNewPrice" id="id-45bf8a4e1c2e45598908c9d97e621dcc"/>
+        <element xsi:type="archimate:ApplicationFunction" name="OpenOrder" id="id-600c032a2b984e3c8e554125b8fcc130"/>
+      </folder>
+      <folder name="Order" id="id-f9b68fb7785645c18c1a447870d42240">
+        <element xsi:type="archimate:DataObject" name="Order" id="id-e35eef5b82f54410842ff1f5cbff2928"/>
       </folder>
     </folder>
     <folder name="Objects" id="id-3cb9fc2f103c4f1fbc991a2de8b16025">
@@ -69,6 +79,13 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
     <element xsi:type="archimate:ServingRelationship" id="id-6bbee3c1efa242a5b95f7799f779cb4b" source="id-38331f1d57a54398b7a327d4a87ec572" target="id-4c84e19735e44d98986cfc34c518a9f6"/>
     <element xsi:type="archimate:ServingRelationship" id="id-3cbf7d1b39774389beab411ee6d27b0d" source="id-38331f1d57a54398b7a327d4a87ec572" target="id-00aa492bd6a846318c996edae2a4b4c0"/>
     <element xsi:type="archimate:ServingRelationship" id="id-42f0635ae7344b46b05e9cc52d068ebf" source="id-38331f1d57a54398b7a327d4a87ec572" target="id-131391a259bd44fb832782317d97efd5"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-d0229f99933b4eabbac2036a59ff0ab0" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-45bf8a4e1c2e45598908c9d97e621dcc"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-99880a5c4a66405d863218c1ffad1fc1" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-ab8f153fec71479c8c1e3691f945cf64"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-306d85d6607541fabab6e5572cf5015f" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-4eb9985c71604ba88661afd8e3164979"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-659e90a04ef14b7183d2e9817921a207" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-cb99f361f5d44631b410fd16af508000"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-4a95f60171874e19a627124acd0038fd" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-50d5ff634be142ad8fb6b65607470cfd"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-71eff59e5cbe4013aa7a569fa4d6996d" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-c03c0fc3a7534520bf614e967937d02f"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-81fff847c2e14ba68f0ced9674d105c7" source="id-e540529cbfb84db5996a5d77d55a44bd" target="id-600c032a2b984e3c8e554125b8fcc130"/>
   </folder>
   <folder name="Views" id="id-5e0ff5b204814da3a601c1913a0327aa" type="diagrams">
     <folder name="Data Manager" id="id-7ebe7297c6db48f49157e76c4e77aeb9">
@@ -99,6 +116,103 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
         </child>
         <child xsi:type="archimate:DiagramObject" id="id-2246f3af4f714885b128a394c71dcd87" targetConnections="id-c3eff5bfb27849ca895a04f62f4938b6" archimateElement="id-00aa492bd6a846318c996edae2a4b4c0">
           <bounds x="264" y="168" width="120" height="55"/>
+        </child>
+      </element>
+    </folder>
+    <folder name="IStrategy" id="id-99d229cc98104fea84175eceda29df65">
+      <folder name="Design" id="id-aece225cfbba44c082c0a4ba9d515d93">
+        <element xsi:type="archimate:SketchModel" name="OpenOrder(Order order)" id="id-791bc5e0810e4cd2979bc6e8eac31934"/>
+        <element xsi:type="archimate:SketchModel" name="Order" id="id-48f9460e7b9748e68d9442cbd15d760d">
+          <child xsi:type="archimate:SketchModelSticky" id="id-7091a26f625844cf9a3021fd85476ffb" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffff00">
+            <bounds x="228" y="72" width="135" height="70"/>
+            <content>Type&#xD;
+Market | Limit</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-04e0c20e28a843a89de6b1f568090986" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="228" y="168" width="135" height="70"/>
+            <content>Amount</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-95592b15c5e14ebcaf5fef917399086a" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="228" y="264" width="135" height="70"/>
+            <content>Price</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-3ec3a81aa41342459cf5b2589d48eca0" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="228" y="360" width="135" height="70"/>
+            <content>OrderId</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-738a576883bf424fb3a0d10498528dd5" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="408" y="168" width="135" height="70"/>
+            <content>OpenTime</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-b6022abc77604053971ccc2fc2babe4c" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="408" y="264" width="135" height="70"/>
+            <content>CloseTime</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-30ede0476acf4a8d9cb7c20bc7163cf7" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="588" y="168" width="135" height="70"/>
+            <content>EntryPrice</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-60013031bd0649209349063dc111ec0d" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="588" y="264" width="135" height="70"/>
+            <content>ExitPrice</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-38c90959ff27424a8c4c736c961df240" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffff00">
+            <bounds x="408" y="72" width="135" height="70"/>
+            <content>Status&#xD;
+Open | Closed | Pending</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-9acc94aa2fa94b148eb9b83ba55e4f59" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffff00">
+            <bounds x="588" y="72" width="135" height="70"/>
+            <content>Direction&#xD;
+Buy | Sell</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-1bb4a38069094abe89d7224918dc8582" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="408" y="360" width="135" height="70"/>
+            <content>Bruto PnL</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-c3fc7792ba0145bea690f8e4cbffaa91" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="588" y="360" width="135" height="70"/>
+            <content>CommisionAmount</content>
+          </child>
+          <documentation>Order data type&#xD;
+its meant to interconnect the interface with the engine two way</documentation>
+        </element>
+      </folder>
+      <element xsi:type="archimate:ArchimateDiagramModel" name="IStrategy" id="id-56280c735dad400c94d255c7adfc2a89">
+        <child xsi:type="archimate:DiagramObject" id="id-8e10fe0ddba94fddbfa006cb1327b6a3" archimateElement="id-e540529cbfb84db5996a5d77d55a44bd">
+          <bounds x="156" y="125" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-36b958b870c24feab9de8bea718523b6" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-3a3366f46ade4b89912cdbcd3d2925e0" archimateRelationship="id-d0229f99933b4eabbac2036a59ff0ab0"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e83910a56da448fc946cf132a4496594" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-88bdcb4a42ff4dc4abe04fd0bfc83d4d" archimateRelationship="id-99880a5c4a66405d863218c1ffad1fc1"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-4bf855ccd75a4a41a2bc8caa418c7e13" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-03bf2852811a47199fa2c95829074ea7" archimateRelationship="id-306d85d6607541fabab6e5572cf5015f">
+            <bendpoint startX="24" startY="220" endX="-84" endY="2"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-90d19b65dd3d4f61adace877114e2982" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-407c0f1c2a8d4eb5ba74d9bef7a312a5" archimateRelationship="id-659e90a04ef14b7183d2e9817921a207">
+            <bendpoint startY="220" endX="96" endY="2"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e6136d7cec92440dad045ed11ada26c2" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-549330a25ed1450ea6f3e4536140f8ae" archimateRelationship="id-4a95f60171874e19a627124acd0038fd"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-047c4c21d4174315912435d332bbe05e" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-ed60246c691e46b0b6020b561e33faa4" archimateRelationship="id-71eff59e5cbe4013aa7a569fa4d6996d"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-be373e8e97a347db8d342d1b6ecdc0c6" source="id-8e10fe0ddba94fddbfa006cb1327b6a3" target="id-004ce94036034848bbf96fd5e5c1ecb0" archimateRelationship="id-81fff847c2e14ba68f0ced9674d105c7"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-3a3366f46ade4b89912cdbcd3d2925e0" targetConnections="id-36b958b870c24feab9de8bea718523b6" archimateElement="id-45bf8a4e1c2e45598908c9d97e621dcc">
+          <bounds x="264" y="223" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-03bf2852811a47199fa2c95829074ea7" targetConnections="id-4bf855ccd75a4a41a2bc8caa418c7e13" archimateElement="id-4eb9985c71604ba88661afd8e3164979">
+          <bounds x="264" y="343" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-407c0f1c2a8d4eb5ba74d9bef7a312a5" targetConnections="id-90d19b65dd3d4f61adace877114e2982" archimateElement="id-cb99f361f5d44631b410fd16af508000">
+          <bounds x="60" y="343" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-88bdcb4a42ff4dc4abe04fd0bfc83d4d" targetConnections="id-e83910a56da448fc946cf132a4496594" archimateElement="id-ab8f153fec71479c8c1e3691f945cf64">
+          <bounds x="60" y="223" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-004ce94036034848bbf96fd5e5c1ecb0" targetConnections="id-be373e8e97a347db8d342d1b6ecdc0c6" archimateElement="id-600c032a2b984e3c8e554125b8fcc130">
+          <bounds x="60" y="24" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-ed60246c691e46b0b6020b561e33faa4" targetConnections="id-047c4c21d4174315912435d332bbe05e" archimateElement="id-c03c0fc3a7534520bf614e967937d02f">
+          <bounds x="264" y="24" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-549330a25ed1450ea6f3e4536140f8ae" targetConnections="id-e6136d7cec92440dad045ed11ada26c2" archimateElement="id-50d5ff634be142ad8fb6b65607470cfd">
+          <bounds x="372" y="125" width="120" height="55"/>
         </child>
       </element>
     </folder>

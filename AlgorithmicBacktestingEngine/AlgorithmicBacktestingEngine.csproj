@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Docs\Archimate\Diagrams\" />
     <Folder Include="Docs\Archimate\Documentation\" />
   </ItemGroup>
 
