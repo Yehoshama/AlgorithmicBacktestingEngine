@@ -12,12 +12,25 @@ namespace AlgorithmicBacktestingEngine.Objects
     /// <param name="Time">time of tick occurance</param>
     /// <param name="Price">the price</param>
     /// <param name="Volume">the amount of the trade as base asset</param>
-    public record Tick(
-        DateTime Time,
-        decimal Price,
-        decimal Volume
-        )
+    public record Tick
     {
+        public DateTime Time { get; }
+        public decimal Price {  get; }
+        public decimal Volume {  get; }
+        public Tick(DateTime time, decimal price, decimal volume)
+        {
+            if(price <= 0)
+            {
+                throw new ArgumentException($"{nameof(price)} cannot be <= 0");
+            }
+            if(volume <= 0)
+            {
+                throw new ArgumentException($"{nameof(volume)} cannot be <= 0");
+            }
+            Time = time;
+            Price = price;
+            Volume = volume;
+        }
         public const int SerialisationLength = 8 + 16 + 16;
         /// <summary>
         /// serialises the Tick Record
@@ -54,22 +67,38 @@ namespace AlgorithmicBacktestingEngine.Objects
             }
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
     }
     /// <summary>
     /// Represents a collection of ticks with metadata
     /// </summary>
     /// <param name="ticks">the Tick collection</param>
     /// <param name="minimumPriceDiff">minimum alowed price change</param>
-    public class TicksSequence(IEnumerable<Tick> ticks, decimal minimumPriceDiff)
+    public class TicksSequence
     {
-        public IReadOnlyList<Tick> Ticks { get; } = ticks.OrderBy(x => x.Time).ToList();
-        public decimal MinPriceChange { get; } = minimumPriceDiff;
+        public IReadOnlyList<Tick> Ticks { get; }
+        public decimal MinPriceChange { get; }
         public int Count => Ticks.Count;
         public DateTime Beginning => Ticks[0].Time;
         public DateTime Ending => Ticks.Last().Time;
         public TimeSpan TimeSpan => Ending - Beginning;
         public Tick First => Ticks[0];
         public const int MetadataSerialisationLength = Tick.SerialisationLength + 8 + 16 + 4; 
+
+        public TicksSequence(IEnumerable<Tick> ticks, decimal minimumPriceDiff)
+        {
+            if(minimumPriceDiff <= 0)
+            {
+                throw new ArgumentException($"{nameof(minimumPriceDiff)} should be graeter than zero");
+            }
+            Ticks = ticks.OrderBy(x => x.Time).ToList();
+            MinPriceChange = minimumPriceDiff;
+        }
+
         /// <summary>
         /// serialises the TickSequence
         /// </summary>
@@ -112,7 +141,7 @@ namespace AlgorithmicBacktestingEngine.Objects
                 var minPriceChange = metadata.MinimumPriceChange;
                 Tick prev = metadata.FirstTick;
                 List<Tick> ticks = new List<Tick>() { prev };
-                for (int i = 0; i < metadata.TicksCount; i++)
+                for (int i = 0; i < metadata.TicksCount - 1; i++)
                 {
                     var data = reader.ReadBytes(TickDiff.SerializationLength);
                     var tickDiff = TickDiff.FromBytes(data);
@@ -159,7 +188,7 @@ namespace AlgorithmicBacktestingEngine.Objects
         /// </summary>
         /// <param name="bytes">metadata byte array</param>
         /// <returns></returns>
-        internal static (Tick FirstTick, DateTime LastTime, decimal MinimumPriceChange, int TicksCount) ReadMetadata(byte[] bytes)
+        public static (Tick FirstTick, DateTime LastTime, decimal MinimumPriceChange, int TicksCount) ReadMetadata(byte[] bytes)
         {
             using (var buffer = new MemoryStream(bytes))
             using (var reader = new BinaryReader(buffer))
@@ -176,7 +205,7 @@ namespace AlgorithmicBacktestingEngine.Objects
         /// serialises TickSequence metadata
         /// </summary>
         /// <returns></returns>
-        internal byte[] WriteMetadata()
+        public byte[] WriteMetadata()
         {
             using (var buffer = new MemoryStream())
             using (var writer = new BinaryWriter(buffer))
