@@ -1,9 +1,35 @@
-﻿# IStrategy
-this interface is the main way to connect and use the Engine.
-its functionality is to open/close and monitor orders.
-it will also(in the future have the functionality to connect to the wallet)
-its in a different project for modularity.
-![Img 638903030358559354](img_638903030358559354.png)
-## Order
-the order type is the data object that keeps all the data needed to interact with the engine.
-![Img 638903031416548316](img_638903031416548316.png)
+# IStrategy Interface
+
+The `IStrategy` interface defines the primary way to interact with the Algorithmic Backtesting Engine.  
+It supports opening, closing, and monitoring orders, and will eventually integrate wallet functionality.
+
+## 📐 Interface Diagram
+
+![IStrategy UML Diagram](img_638903030358559354.png)
+
+### Methods
+- `OpenOrder`
+- `CloseOrder`
+- `GetOrders`
+- `OnInit`
+- `OnNewPrice`
+- `OnNewCandle`
+- `OnDelInit`
+
+## 🧾 Order Object
+
+The `Order` type encapsulates all necessary data to interact with the engine.
+
+![Order Object Structure](img_638903031416548316.png)
+
+### Fields
+- **Type**: Market | Limit
+- **Status**: Open | Closed | Pending
+- **Direction**: Buy | Sell
+- **Amount**, **OpenTime**, **EntryPrice**
+- **Price**, **CloseTime**, **ExitPrice**
+- **OrderId**, **Bruto PnL**, **CommissionAmount**
+
+## 🧩 Architecture Note
+
+This interface resides in a separate project to maintain modularity and allow independent development of strategy logic.
