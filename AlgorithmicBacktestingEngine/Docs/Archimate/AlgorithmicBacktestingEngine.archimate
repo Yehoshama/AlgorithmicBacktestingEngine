@@ -47,7 +47,7 @@ There are two file types directly usable: .fin.cndl(represents a sequence of fin
         <element xsi:type="archimate:ApplicationEvent" name="OnInit" id="id-cb99f361f5d44631b410fd16af508000"/>
         <element xsi:type="archimate:ApplicationEvent" name="OnNewCandle" id="id-4eb9985c71604ba88661afd8e3164979"/>
         <element xsi:type="archimate:ApplicationEvent" name="OnNewPrice" id="id-45bf8a4e1c2e45598908c9d97e621dcc"/>
-        <element xsi:type="archimate:ApplicationFunction" name="OpenOrder" id="id-600c032a2b984e3c8e554125b8fcc130"/>
+        <element xsi:type="archimate:ApplicationFunction" name="PlaceOrder" id="id-600c032a2b984e3c8e554125b8fcc130"/>
       </folder>
       <folder name="Order" id="id-f9b68fb7785645c18c1a447870d42240">
         <element xsi:type="archimate:DataObject" name="Order" id="id-e35eef5b82f54410842ff1f5cbff2928"/>
@@ -159,11 +159,11 @@ Market | Limit</content>
           <child xsi:type="archimate:SketchModelSticky" id="id-38c90959ff27424a8c4c736c961df240" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffff00">
             <bounds x="408" y="72" width="135" height="70"/>
             <content>Status&#xD;
-Open | Closed | Pending</content>
+Open | Filled | Pending | New | Rejected | Cancelled</content>
           </child>
           <child xsi:type="archimate:SketchModelSticky" id="id-9acc94aa2fa94b148eb9b83ba55e4f59" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffff00">
             <bounds x="588" y="72" width="135" height="70"/>
-            <content>Direction&#xD;
+            <content>Side&#xD;
 Buy | Sell</content>
           </child>
           <child xsi:type="archimate:SketchModelSticky" id="id-1bb4a38069094abe89d7224918dc8582" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
@@ -173,6 +173,10 @@ Buy | Sell</content>
           <child xsi:type="archimate:SketchModelSticky" id="id-c3fc7792ba0145bea690f8e4cbffaa91" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
             <bounds x="588" y="360" width="135" height="70"/>
             <content>CommisionAmount</content>
+          </child>
+          <child xsi:type="archimate:SketchModelSticky" id="id-5be60ba1fe5f46adb3f51aa08705a2c6" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#b5ffff">
+            <bounds x="756" y="168" width="135" height="70"/>
+            <content>CreationTime</content>
           </child>
           <documentation>Order data type&#xD;
 its meant to interconnect the interface with the engine two way</documentation>
