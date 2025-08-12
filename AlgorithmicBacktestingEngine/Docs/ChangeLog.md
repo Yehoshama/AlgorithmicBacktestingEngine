@@ -1,4 +1,16 @@
-﻿# 0.0.1.5
+﻿# 0.0.1.6
+## working on #22
+- [x] plan Broker on Archi
+---
+- added planned sl/tp for Order on archi (#23)
+- renamed orderManager to Broker
+- added OnOrderUpdate To IStrategy in archi
+- added issue: add OnOrderUpdate to IStrategy (#24)
+- resolved #22
+- added issue: implement Broker class (#25)
+
+
+# 0.0.1.5
 ## working on #16
 - [x] new projecrt to contain all modular components
 - [x] create the inteface
@@ -29,3 +41,4 @@
 - [x] test correct serialization
 - [x] test correct desirialization
 - [x] test wrong input handeling
+
