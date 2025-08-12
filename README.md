@@ -14,13 +14,15 @@ Further development is **not guaranteed** unless the project gains meaningful in
 
 ---
 
-## ✅ MVP Features (v0.1.0)
+## MVP Features (v0.1.0) - Planned, not ready yet
 
 - Tick & Candle Serialization using compressed binary formats
 - Modular Strategy Framework
 - Strategy Execution via Console Interface
 - Fixed CSV input format for data ingestion
 - Unit tests created as needed during development
+  
+check the [MVP limitations](https://github.com/Yehoshama/AlgorithmicBacktestingEngine/blob/master/AlgorithmicBacktestingEngine/Docs/LimitationsOf_MVP.md)
 
 ---
 
