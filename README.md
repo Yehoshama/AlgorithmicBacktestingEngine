@@ -4,6 +4,11 @@ A modular C# backtesting engine for algorithmic trading strategies, designed for
 
 ---
 
+> ⚠️ **Note from the Developer**  
+> Apologies for the lack of recent updates — I've been hired for a freelance position and am currently juggling two jobs. Until I complete these freelance projects, updates to this repository will be limited, if at all. Thank you for your understanding and continued interest!
+
+---
+
 ## 🚀 Portfolio Showcase & MVP Goal
 
 This is a **portfolio project** created to demonstrate software architecture, modular design, and algorithmic trading concepts.
